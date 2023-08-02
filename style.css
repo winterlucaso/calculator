@@ -3,6 +3,9 @@
     border: 2px solid red;
 } */
 
+/* Colors
+https://coolors.co/ffe4c4-9d858d-a4a8d1-a4bfeb-8cabbe */
+
 body {
     display: flex;
     justify-content: center;
@@ -22,16 +25,18 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* height: 90px; */
-    /* background-color: rgb(105, 105, 105); */
 }
 
-.display-screen {
-    background-color: aliceblue;
-    /* border: 4px solid rgb(105, 105, 105); */
+#display-screen {
+    background-color: rgb(229, 229, 229);
+    /* background-color: rgb(157, 133, 141); */
+    border: 2px solid rgb(105, 105, 105);
     margin: 5px;
+    padding: 10px;
+    height: 55px;
     text-align: right;
     font-size: 55px;
+    font-family: "Lucida Console", Courier, monospace;
 }
 
 /* Main Block */
@@ -46,6 +51,30 @@ body {
 
 
 /* Number Grid */
+button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    background-color: bisque;
+    /* border: 1px solid rgb(105, 105, 105); */
+    font-family: "Lucida Console", Courier, monospace;
+}
+
+button:hover {
+    background-color: rgb(244, 218, 187);
+}
+
+#backspaceBtn,
+#equalBtn {
+    background-color: rgb(157, 133, 141);
+}
+
+#backspaceBtn:hover,
+#equalBtn:hover {
+    background-color: rgb(139, 118, 125);
+}
+
 .number-grid {
     display: grid;
     grid-template-rows: 1fr 1fr 1fr 1fr;
@@ -54,26 +83,26 @@ body {
     width: 70%;
 }
 
-.number-square {
+/* .number-square {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-weight: bold;
+    font-size: 30px;
     border: 1px solid rgb(105, 105, 105);
-}
+    font-family: "Lucida Console", Courier, monospace;
+} */
 
 .operator-buttons {
     display: grid;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-    font-weight: bold;
     width: 30%;
-    /* border: 1px solid rgb(105, 105, 105); */
 }
 
-.operator-btn {
+/* .operator-btn {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-weight: bold;
+    font-size: 30px;
+    font-family: "Lucida Console", Courier, monospace;
     border: 1px solid rgb(105, 105, 105);
-}
+} */

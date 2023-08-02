@@ -1,53 +1,43 @@
 // To-Do List
 // - Simplify functions
-//   - delete isSelectingNum2 in favor of putting its contents in checkNumberClick
 //   - change updateOperator() to a non-switch function
 //   - use more arrow functions on simple functions
+// - Backspace Button
+// - Round long answers
+// - Make "Error" (divide by 0 result) be a hard stop on any actions except for CLEAR
 
 // Functions
 
 // -- Number Click Functions --
-// Checks what to do when a number is clicked
+// Updates the appropriate operatingNum and updates display screen
 function checkNumberClick(number) {
     console.log("You Clicked: " + number)
-    if (isSelectingNum2()) {
-        number2Select(number);
+    // Exit if "ERROR"
+    if (operatingNum1 === "ERROR") {
+        return;
     }
-    else {
-        number1Select(number);
-    }
-}
-
-// Returns true if a number and an operator have been selected
-function isSelectingNum2() {
-    // console.log("isSelectingNum2" + ((operatingNum1 !== 0) && (currentOperator !== "undefined")));
-    return (operatingNum1 !== "") && (currentOperator !== "undefined");
-}
-
-function number1Select(number) {
-    operatingNum1 += number;
-    displayScreen.textContent += number;
-    console.log("operatingNum1: " + operatingNum1 + " || operatingNum2: " + operatingNum2);
-}
-
-function number2Select(number) {
-    if (operatingNum2 === "") {
-        displayScreen.textContent = "";
-        operatingNum2 = number;
-    }
-    else {
+    // Write to operatingNum2 and reset displayScreen
+    if ((operatingNum1 !== "") && (currentOperator !== "undefined")) {
+        if (operatingNum2 === "") {
+            displayScreen.textContent = "";
+        }
         operatingNum2 += number;
+        displayScreen.textContent += number;
+        console.log("operatingNum1: " + operatingNum1 + " || operatingNum2: " + operatingNum2);
     }
-    displayScreen.textContent += number;
-    console.log("operatingNum1: " + operatingNum1 + " || operatingNum2: " + operatingNum2);
+    // Write to operatingNum1
+    else {
+        operatingNum1 += number;
+        displayScreen.textContent += number;
+        console.log("operatingNum1: " + operatingNum1 + " || operatingNum2: " + operatingNum2);
+    }
 }
-
 
 // -- Operator Functions --
 // Determines what to do when operator button is clicked
 function checkOperatorClick(operatorChoice) {
     // Skip if no initial number chosen
-    if (operatingNum1 === "") {
+    if (operatingNum1 === "" || operatingNum1 === "ERROR") {
         return;
     }
     // Update the operator if no second number has been chosen
@@ -63,33 +53,39 @@ function checkOperatorClick(operatorChoice) {
 
 // Updates the operator
 function updateOperator(operatorChoice) {
-    switch(operatorChoice) {
-        case "add":
-            currentOperator = "add";
-            console.log("currentOperator: " + currentOperator);
-            break;
-        case "subtract":
-            currentOperator = "subtract";
-            console.log("currentOperator: " + currentOperator);
-            break;
-        case "multiply":
-            currentOperator = "multiply";
-            console.log("currentOperator: " + currentOperator);
-            break;
-        case "divide":
-            currentOperator = "divide";
-            console.log("currentOperator: " + currentOperator);
-            break;
-    }
+    // switch(operatorChoice) {
+    //     case "add":
+    //         currentOperator = "add";
+    //         console.log("currentOperator: " + currentOperator);
+    //         break;
+    //     case "subtract":
+    //         currentOperator = "subtract";
+    //         console.log("currentOperator: " + currentOperator);
+    //         break;
+    //     case "multiply":
+    //         currentOperator = "multiply";
+    //         console.log("currentOperator: " + currentOperator);
+    //         break;
+    //     case "divide":
+    //         currentOperator = "divide";
+    //         console.log("currentOperator: " + currentOperator);
+    //         break;
+    // }
+    currentOperator = operatorChoice;
 }
 
 // Equals Functions
-function checkEqualFunction(num1, num2, operator) {
-    resolveEquation(operatingNum1, operatingNum2, currentOperator);
+function checkEqualFunction() {
+    if ((operatingNum1 !== "") && (operatingNum2 !== "") && (currentOperator !== "undefined")) {
+        resolveEquation(operatingNum1, operatingNum2, currentOperator);
+    }
+    return;
     // console.log("operatingNum1: " + operatingNum1 + " || operatingNum2: " + operatingNum2);
 
 }
 
+// Calls the appropriate function, displays the result, 
+// sets the result to operatingNum1, and resets operatingNum2 to ""
 function resolveEquation(number1, number2, op) {
     num1 = Number(number1);
     num2 = Number(number2);
@@ -128,8 +124,6 @@ function clearFunction() {
     operatingNum1 = "";
     operatingNum2 = "";
     currentOperator = "undefined";
-    // isNum1Selected = "false";
-    // isOperatorSelected = "false";
     console.log("CLEARED");
 }
 
@@ -142,15 +136,14 @@ function subtract(num1, num2) {
     return num1 - num2;
 };
   
-function multiply(...array1) {
-    let runningTotal = array1[0];
-    for (let i = 1; i < array1.length; i++) {
-      runningTotal *= array1[i];
-    }
-    return runningTotal;
+function multiply(num1, num2) {
+    return num1 * num2;
 };
 
 function divide(num1, num2) {
+    if (num2 === 0){
+        return "ERROR";;
+    }
     return num1/num2;
 }
 

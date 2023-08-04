@@ -1,12 +1,3 @@
-// To-Do List
-// - Simplify functions
-//   - change updateOperator() to a non-switch function
-//   - use more arrow functions on simple functions
-// - Backspace Button
-// - Round long answers
-
-// Functions
-
 // -- Number Click Functions --
 // Updates the appropriate operatingNum and updates display screen
 function checkNumberClick(number) {
@@ -64,7 +55,6 @@ function checkEqualFunction() {
     }
     console.log("operatingNum1: " + operatingNum1 + " || operatingNum2: " + operatingNum2);
     return;
-
 }
 
 // Calls the appropriate function, displays the result, 
@@ -98,7 +88,6 @@ function resolveEquation(number1, number2, op) {
             operatingNum2 = "";
             return;
     }
-
 }
 
 // Clear Function
@@ -191,11 +180,5 @@ btn8.addEventListener('click', () => checkNumberClick("8"));
 btn9.addEventListener('click', () => checkNumberClick("9"));
 btn0.addEventListener('click', () => checkNumberClick("0"));
 
-console.log(displayScreen.textContent);
+// console.log(displayScreen.textContent);
 displayScreen.textContent = `${currentDisplay}`;
-
-
-
-
-
-

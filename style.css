@@ -28,11 +28,15 @@ body {
 }
 
 #display-screen {
+    white-space: nowrap;
+    overflow: hidden;
+    min-width: 0px;
     background-color: rgb(229, 229, 229);
     /* background-color: rgb(157, 133, 141); */
     border: 2px solid rgb(105, 105, 105);
     margin: 5px;
     padding: 10px;
+    padding-left: 30px;
     height: 55px;
     text-align: right;
     font-size: 55px;
@@ -83,26 +87,8 @@ button:hover {
     width: 70%;
 }
 
-/* .number-square {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 30px;
-    border: 1px solid rgb(105, 105, 105);
-    font-family: "Lucida Console", Courier, monospace;
-} */
-
 .operator-buttons {
     display: grid;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
     width: 30%;
 }
-
-/* .operator-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 30px;
-    font-family: "Lucida Console", Courier, monospace;
-    border: 1px solid rgb(105, 105, 105);
-} */

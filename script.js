@@ -4,7 +4,6 @@
 //   - use more arrow functions on simple functions
 // - Backspace Button
 // - Round long answers
-// - Make "Error" (divide by 0 result) be a hard stop on any actions except for CLEAR
 
 // Functions
 
@@ -16,7 +15,7 @@ function checkNumberClick(number) {
     if (operatingNum1 === "ERROR") {
         return;
     }
-    // Write to operatingNum2 and reset displayScreen
+    // Write to operatingNum2
     if ((operatingNum1 !== "") && (currentOperator !== "undefined")) {
         if (operatingNum2 === "") {
             displayScreen.textContent = "";
@@ -53,25 +52,9 @@ function checkOperatorClick(operatorChoice) {
 
 // Updates the operator
 function updateOperator(operatorChoice) {
-    // switch(operatorChoice) {
-    //     case "add":
-    //         currentOperator = "add";
-    //         console.log("currentOperator: " + currentOperator);
-    //         break;
-    //     case "subtract":
-    //         currentOperator = "subtract";
-    //         console.log("currentOperator: " + currentOperator);
-    //         break;
-    //     case "multiply":
-    //         currentOperator = "multiply";
-    //         console.log("currentOperator: " + currentOperator);
-    //         break;
-    //     case "divide":
-    //         currentOperator = "divide";
-    //         console.log("currentOperator: " + currentOperator);
-    //         break;
-    // }
     currentOperator = operatorChoice;
+    console.log("currentOperator: " + currentOperator);
+    return;
 }
 
 // Equals Functions
@@ -79,8 +62,8 @@ function checkEqualFunction() {
     if ((operatingNum1 !== "") && (operatingNum2 !== "") && (currentOperator !== "undefined")) {
         resolveEquation(operatingNum1, operatingNum2, currentOperator);
     }
+    console.log("operatingNum1: " + operatingNum1 + " || operatingNum2: " + operatingNum2);
     return;
-    // console.log("operatingNum1: " + operatingNum1 + " || operatingNum2: " + operatingNum2);
 
 }
 
@@ -127,6 +110,21 @@ function clearFunction() {
     console.log("CLEARED");
 }
 
+// Backspace Function
+// As written, 
+function backspaceFunction(){
+    if (operatingNum2 !== "" && currentOperator !== "undefined") {
+        operatingNum2 = operatingNum2.substring(0, operatingNum2.length - 1);
+        displayScreen.textContent = operatingNum2;
+        return;
+    }
+    else if (operatingNum1 !== "" && currentOperator === "undefined") {
+        operatingNum1 = operatingNum1.substring(0, operatingNum1.length - 1);
+        displayScreen.textContent = operatingNum1;
+        return;
+    }
+}
+
 // Math Functions
 function add(num1, num2) {
     return num1 + num2;
@@ -162,6 +160,7 @@ const multiplyBtn = document.getElementById('multiplyBtn');
 const divideBtn = document.getElementById('divideBtn');
 const clearBtn = document.getElementById('clearBtn');
 const equalBtn = document.getElementById('equalBtn');
+const backspaceBtn = document.getElementById('backspaceBtn');
 const btn1 = document.getElementById('btn1');
 const btn2 = document.getElementById('btn2');
 const btn3 = document.getElementById('btn3');
@@ -180,6 +179,7 @@ multiplyBtn.addEventListener('click', () => checkOperatorClick("multiply"));
 divideBtn.addEventListener('click', () => checkOperatorClick("divide"));
 clearBtn.addEventListener('click', () => clearFunction());
 equalBtn.addEventListener('click', () => checkEqualFunction());
+backspaceBtn.addEventListener('click', () => backspaceFunction());
 btn1.addEventListener('click', () => checkNumberClick("1"));
 btn2.addEventListener('click', () => checkNumberClick("2"));
 btn3.addEventListener('click', () => checkNumberClick("3"));
